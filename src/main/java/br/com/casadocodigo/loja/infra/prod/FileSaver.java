@@ -23,16 +23,16 @@ public class FileSaver {
 	@Autowired
 	private HttpServletRequest request;
 	
-	private static final String BUCKET="elasticbeanstalk-us-east-1-351341844858";
 
 	@Profile("prod")
 	public String writeProd(MultipartFile file) {
 		try {
-			amazonS3.putObject(new PutObjectRequest(BUCKET, 
+			String bucket=System.getProperty("BUCKET");
+			amazonS3.putObject(new PutObjectRequest(bucket, 
 					file.getOriginalFilename(), file.getInputStream(),null)
 					.withCannedAcl(CannedAccessControlList.PublicRead));
 				
-			return "http://s3.amazonaws.com/"+BUCKET+"/"+file.getOriginalFilename();
+			return "http://s3.amazonaws.com/"+bucket+"/"+file.getOriginalFilename();
 			
 		} catch (IllegalStateException | IOException e) {
 			throw new RuntimeException(e);
