@@ -56,9 +56,9 @@ public class JPAConfiguration {
 	@Profile("dev")
 	public DataSource dataSourceDev() {
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-		dataSource.setUsername("root");
-		dataSource.setPassword("123");
-		dataSource.setUrl("jdbc:mysql://localhost:3306/casadocodigo");
+		dataSource.setUsername(System.getProperty("USUARIO"));
+		dataSource.setPassword(System.getProperty("SENHA"));
+		dataSource.setUrl(System.getProperty("JDBC_CONNECTION_STRING"));
 		dataSource.setDriverClassName("com.mysql.jdbc.Driver");
 		return dataSource;
 	}
