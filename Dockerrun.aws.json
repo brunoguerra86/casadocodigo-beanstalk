@@ -1,0 +1,13 @@
+{
+  "AWSEBDockerrunVersion": 1,
+  "Image": {
+    "Name": "[Nome da imagem que está salva no Docker Hub]",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "hostPort": 80,
+      "ContainerPort": 8080
+    }
+  ]
+}
